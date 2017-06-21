@@ -17,7 +17,7 @@
         android:onClick="onAddItem"/>
 
     <ListView
-        android:id="@+id/lvitems"
+        android:id="@+id/lvItems"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/button3"

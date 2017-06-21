@@ -1,5 +1,6 @@
 package com.codepath.simpletodo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -19,9 +20,14 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    // a numeric code to identify the edit activity
+    public final static int EDIT_REQUEST_CODE =20;
+    // keys used for passing data between activities
+    public final static String ITEM_TEXT = "itemText";
+    public final static String ITEM_POSITION = "itemPosition";
     ArrayList<String> items;
     ArrayAdapter<String> itemsAdapter;
-    ListView lvitems;
+    ListView lvItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
         readItems();
         itemsAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,items);
-        lvitems = (ListView) findViewById(R.id.lvitems);
-        lvitems.setAdapter(itemsAdapter);
+        lvItems = (ListView) findViewById(R.id.lvItems);
+        lvItems.setAdapter(itemsAdapter);
 
         // mock data
         // items.add("First Item");
@@ -51,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setUpListViewListener(){
         Log.i("MainActivity", "Setting up listener on list view");
-        lvitems.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
+        lvItems.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
 
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
@@ -62,7 +68,44 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        // set the ListView's regular click listener
+        lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // first parameter is the context, second is the class of the activity to launch
+                Intent i = new Intent(MainActivity.this, EditItemActivity.class);
+                // put "extras" into the bundle for access in the edit activity
+                i.putExtra(ITEM_TEXT, items.get(position));
+                i.putExtra(ITEM_POSITION, position);
+                // brings up the edit activity with the expectation of a result
+                startActivityForResult(i, EDIT_REQUEST_CODE);
+            }
+        });
+
     }
+
+    // handle results from edit activity
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // EDIT_REQUEST_CODE defined with constants
+        if (resultCode == RESULT_OK && requestCode == EDIT_REQUEST_CODE) {
+            // extract updated item value from result extras
+            String updatedItem = data.getExtras().getString(ITEM_TEXT);
+            // get the position of the item which was edited
+            int position = data.getExtras().getInt(ITEM_POSITION, 0);
+            // update the model with the new item text at the edited position
+            items.set(position, updatedItem);
+            // notify the adapter the model changed
+            itemsAdapter.notifyDataSetChanged();
+            // notify the user the operation completed OK
+            Toast.makeText(this, "Item updated", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     private File getDataFile(){
 
         return new File(getFilesDir(),"todo.txt");
