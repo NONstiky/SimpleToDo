@@ -26,11 +26,20 @@ I made the action bar dark green... my favorite color! #228B22
 
 Here's a walkthrough of implemented user stories:
 
-![Create GIF](DeleteReal.gif)
+Create
+![Create GIF](Create.gif)
+
+Delete
 ![Delete GIF](DeleteReal.gif)
-![Green GIF](DeleteReal.gif)
-![Persistance GIF](DeleteReal.gif)
-![Update GIF](DeleteReal.gif)
+
+Green
+![Green GIF](Green.gif)
+
+Persistance
+![Persistance GIF](Persistance.gif)
+
+Update
+![Update GIF](Update.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
