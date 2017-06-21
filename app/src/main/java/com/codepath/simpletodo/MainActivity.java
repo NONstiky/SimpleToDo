@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
 
         // setup the listener on creation
         setUpListViewListener();
-
     }
 
     public void onAddItem(View v){
@@ -104,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
             items.set(position, updatedItem);
             // notify the adapter the model changed
             itemsAdapter.notifyDataSetChanged();
+            //Add Change to persistance
+            writeItems();
             // notify the user the operation completed OK
             Toast.makeText(this, "Item updated", Toast.LENGTH_SHORT).show();
         }
@@ -120,8 +121,8 @@ public class MainActivity extends AppCompatActivity {
             // create the array using the content in the file
             items = new ArrayList<String>(FileUtils.readLines(getDataFile(), Charset.defaultCharset()));
         } catch (IOException e) {
-            // print the error to the console
-            e.printStackTrace();
+            // log the error
+            Log.e("MainActivity", "Error reading file", e);
             // just load an empty list
             items = new ArrayList<>();
         }
@@ -134,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
             FileUtils.writeLines(getDataFile(), items);
         } catch (IOException e) {
             // print the error to the console
-            e.printStackTrace();
+            Log.e("MainActivity", "Error writing file", e);
         }
     }
 }
