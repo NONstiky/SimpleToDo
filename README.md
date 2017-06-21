@@ -26,7 +26,11 @@ I made the action bar dark green... my favorite color! #228B22
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+![Create GIF](DeleteReal.gif)
+![Delete GIF](DeleteReal.gif)
+![Green GIF](DeleteReal.gif)
+![Persistance GIF](DeleteReal.gif)
+![Update GIF](DeleteReal.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
@@ -37,7 +41,7 @@ Installations!!!! I also encountered a crash because I had accidentally created 
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2017] [Marcos Banchik]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
