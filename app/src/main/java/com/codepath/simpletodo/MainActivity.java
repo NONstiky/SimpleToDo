@@ -33,15 +33,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        readItems();
-        itemsAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,items);
+        // obtain a reference to the ListView created with the layout
         lvItems = (ListView) findViewById(R.id.lvItems);
+        // initialize the items list
+        readItems();
+        // initialize the adapter using the items list
+        itemsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, items);
+        // wire the adapter to the view
         lvItems.setAdapter(itemsAdapter);
 
-        // mock data
-        // items.add("First Item");
-        // items.add("Second Item");
+        // add some mock items to the list
+        //items.add("First todo item");
+        //items.add("Second todo item");
+
+        // setup the listener on creation
         setUpListViewListener();
 
     }
@@ -86,8 +91,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // handle results from edit activity
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -106,25 +109,32 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private File getDataFile(){
-
-        return new File(getFilesDir(),"todo.txt");
+    // returns the file in which the data is stored
+    private File getDataFile() {
+        return new File(getFilesDir(), "todo.txt");
     }
-    private void readItems(){
+
+    // read the items from the file system
+    private void readItems() {
         try {
-            items = new ArrayList<>(FileUtils.readLines(getDataFile(), Charset.defaultCharset()));
-        }
-        catch(IOException e){
-            Log.e("MainActivity", "Error reading file", e);
+            // create the array using the content in the file
+            items = new ArrayList<String>(FileUtils.readLines(getDataFile(), Charset.defaultCharset()));
+        } catch (IOException e) {
+            // print the error to the console
+            e.printStackTrace();
+            // just load an empty list
             items = new ArrayList<>();
         }
     }
 
-    private void writeItems(){
+    // write the items to the filesystem
+    private void writeItems() {
         try {
-            FileUtils.writeLines(getDataFile(),items);
+            // save the item list as a line-delimited text file
+            FileUtils.writeLines(getDataFile(), items);
         } catch (IOException e) {
-            Log.e("MainActivity", "Error writing file", e);
+            // print the error to the console
+            e.printStackTrace();
         }
     }
 }

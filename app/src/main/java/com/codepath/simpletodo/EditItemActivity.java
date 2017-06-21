@@ -29,6 +29,7 @@ public class EditItemActivity extends AppCompatActivity {
         // set the title bar to reflect the purpose of the view
         getSupportActionBar().setTitle("Edit Item");
     }
+
     // handler for save button
     public void onSaveItem(View v) {
         // Prepare intent to pass back to MainActivity
@@ -39,20 +40,6 @@ public class EditItemActivity extends AppCompatActivity {
         setResult(RESULT_OK, data); // set result code and bundle data for response
         finish(); // closes the edit activity, passes intent back to main
     }
-
-//    public void onSaveItem(View v){
-//        // prepare new intent for result
-//        Intent i = new Intent();
-//        // pass updated item text as extra
-//        i.putExtra(ITEM_TEXT, etItemText.getText().toString());
-//        // pass original position as extra
-//        i.putExtra(ITEM_POSITION,position);
-//        // set the intent as the result of the activity
-//        setResult(RESULT_OK, i);
-//        // close the activity and redirect to main
-//        finish();
-//    }
-
 
 }
 
