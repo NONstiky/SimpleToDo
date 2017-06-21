@@ -24,7 +24,11 @@ The following **additional** features are implemented:
 I made the action bar dark green... my favorite color! #228B22
 ## Video Walkthrough
 
-Here's a walkthrough of implemented user stories:
+Here's Full walkthrough of implemented user stories:
+
+
+![WalkThrough](walkthroughgif.gif)
+
 
 Create
 
