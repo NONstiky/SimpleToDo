@@ -21,7 +21,7 @@ The following **optional** features are implemented:
 The following **additional** features are implemented:
 
 * [x] List anything else that you can get done to improve the app functionality!
-
+I made the action bar dark green... my favorite color! #228B22
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
@@ -33,6 +33,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 ## Notes
 
 Describe any challenges encountered while building the app.
+Installations!!!! I also encountered a crash because I had accidentally created an extra id for one of the buttons. I learned a lot using the debugger!
 
 ## License
 
