@@ -13,7 +13,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:text="Add"
+        android:text="@string/add_button_text"
         android:onClick="onAddItem"/>
 
     <ListView
@@ -35,6 +35,6 @@
         android:layout_toLeftOf="@+id/button3"
         android:layout_toStartOf="@+id/button3"
         android:ems="10"
-        android:hint="Add a new item here"
+        android:hint="@string/todo_entry_text"
         android:inputType="textPersonName" />
 </RelativeLayout>
